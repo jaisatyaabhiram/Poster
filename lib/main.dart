@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:poster/firebase_options.dart';
 import 'package:poster/signup_page.dart';
 
-Future<void> main() async{
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

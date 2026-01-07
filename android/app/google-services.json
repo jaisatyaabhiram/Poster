@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "397276023066",
+    "project_id": "poster-e81a7",
+    "storage_bucket": "poster-e81a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397276023066:android:b95a544771c43d2f5144a3",
+        "android_client_info": {
+          "package_name": "com.example.poster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB35_yUhOKnvfJH4mmssOCYFbFb4hdKR9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
