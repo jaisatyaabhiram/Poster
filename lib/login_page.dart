@@ -9,8 +9,28 @@ class LoginPage extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+String email = "";
+String password = "";
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    email = "";
+    password = "";
+    super.initState();
+  }
+
+  void onLogin() {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        email = emailController.toString();
+        password = passwordController.toString();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        controller: emailController,
                         validator: (value) {
                           if (!value!.contains("@") || !value.contains(".")) {
                             return "Invalid Email";
@@ -76,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        controller: passwordController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Can,t be null";
@@ -86,7 +108,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        onLogin();
+                      },
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(Colors.black),
                       ),
