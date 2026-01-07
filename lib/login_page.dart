@@ -13,11 +13,28 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Poster")),
+      appBar: AppBar(
+        title: Text(
+          "Poster",
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+      ),
       body: Center(
         child: Column(
           children: [
-            CircleAvatar(backgroundColor: Colors.black, radius: 100),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: Text(
+                "Login",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            ),
             Container(
               margin: EdgeInsets.only(top: 20),
               child: Form(
@@ -67,7 +84,13 @@ class _LoginPageState extends State<LoginPage> {
                         obscureText: true,
                       ),
                     ),
-                    ElevatedButton(onPressed: () {}, child: Text("Login")),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(Colors.black),
+                      ),
+                      child: Text("Login"),
+                    ),
                   ],
                 ),
               ),
