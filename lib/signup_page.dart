@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:poster/signup_page.dart';
+import 'package:poster/login_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
 final _formKey = GlobalKey<FormState>();
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               margin: EdgeInsets.only(top: 20),
               child: Text(
-                "Login",
+                "Sign up",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
@@ -69,6 +69,26 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.all(12.0),
                       child: TextFormField(
                         decoration: InputDecoration(
+                          hintText: "@username",
+
+                          label: Text("Username"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Can,t be null";
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(12.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
                           hintText: "******",
 
                           label: Text("Password"),
@@ -91,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                         backgroundColor: WidgetStateProperty.all(Colors.black),
                       ),
                       child: Text(
-                        "Login",
+                        "Sign Up",
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
@@ -100,14 +120,14 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              return SignupPage();
+                              return LoginPage();
                             },
                           ),
                         );
                       },
                       child: Container(
                         margin: EdgeInsets.only(top: 20),
-                        child: Text("Don't have an account? create here"),
+                        child: Text("Already have an account? Login here"),
                       ),
                     ),
                   ],
