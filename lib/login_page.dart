@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poster/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -89,7 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(Colors.black),
                       ),
-                      child: Text("Login"),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SignupPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Text("Don't have an account? create here"),
+                      ),
                     ),
                   ],
                 ),
