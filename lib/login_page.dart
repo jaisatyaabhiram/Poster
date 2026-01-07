@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-final _formKey = GlobalKey<FormState>();
+final _formKey2 = GlobalKey<FormState>();
 String email = "";
 String password = "";
 TextEditingController emailController = TextEditingController();
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void onLogin() {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey2.currentState!.validate()) {
       setState(() {
         email = emailController.toString();
         password = passwordController.toString();
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               margin: EdgeInsets.only(top: 20),
               child: Form(
-                key: _formKey,
+                key: _formKey2,
                 child: Column(
                   children: [
                     Container(
