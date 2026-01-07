@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:poster/login_page.dart';
 
@@ -9,8 +11,52 @@ class SignupPage extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+late String email;
+late String password;
+late String username;
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+TextEditingController usernameController = TextEditingController();
 
 class _SignupPageState extends State<SignupPage> {
+  Future<void> createUser() async {
+    FirebaseFirestore.instance.collection("users").add({
+      "email": email,
+      "password": password,
+      "username": username,
+    });
+  }
+
+  void onSignUP() {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        email = emailController.text;
+        password = passwordController.text;
+        username = usernameController.text;
+      });
+      FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return LoginPage();
+          },
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    email = "";
+    password = "";
+    username = "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +100,7 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        controller: emailController,
                         validator: (value) {
                           if (!value!.contains("@") || !value.contains(".")) {
                             return "Invalid Email";
@@ -76,6 +123,7 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        controller: usernameController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Can,t be null";
@@ -96,6 +144,7 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        controller: passwordController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Can,t be null";
@@ -106,7 +155,10 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        onSignUP();
+                        createUser();
+                      },
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(Colors.black),
                       ),
