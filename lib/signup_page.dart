@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:poster/functions.dart';
 import 'package:poster/login_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -19,14 +20,6 @@ TextEditingController passwordController = TextEditingController();
 TextEditingController usernameController = TextEditingController();
 
 class _SignupPageState extends State<SignupPage> {
-  Future<void> createUser() async {
-    FirebaseFirestore.instance.collection("users").add({
-      "email": email,
-      "password": password,
-      "username": username,
-    });
-  }
-
   void onSignUP() {
     if (_formKey.currentState!.validate()) {
       setState(() {
@@ -38,6 +31,7 @@ class _SignupPageState extends State<SignupPage> {
         email: email,
         password: password,
       );
+      createUser(email, password, username);
 
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -157,7 +151,6 @@ class _SignupPageState extends State<SignupPage> {
                     ElevatedButton(
                       onPressed: () {
                         onSignUP();
-                        createUser();
                       },
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(Colors.black),
